@@ -1,0 +1,97 @@
+<div class="container mt-5">
+  <form class="form-signin" [formGroup]="registerForm" (ngSubmit)="submit()">
+    <h1 class="h3 mb-3 font-weight-normal">Sign Up</h1>
+    <label for="inputName" class="sr-only">Firstname</label>
+    <input
+      formControlName="username"
+      type="text"
+      id="inputusername"
+      class="form-control my-3"
+      placeholder="Firstname"
+      (blur)="logValidationErrors()"
+    />
+    <div
+      class="text-danger"
+      *ngIf="
+        registerForm.controls.username.touched &&
+        registerForm.controls.username.invalid
+      "
+    >
+      <mat-error *ngIf="formErrors?.username">
+        <strong>{{ formErrors.username }}</strong>
+      </mat-error>
+    </div>
+    <label for="inputName" class="sr-only">Lastname</label>
+    <input
+      formControlName="lastname"
+      type="text"
+      id="inputlastname"
+      class="form-control my-3"
+      placeholder="Lastname"
+      (blur)="logValidationErrors()"
+    />
+    <div
+      class="text-danger"
+      *ngIf="
+        registerForm.controls.lastname.touched &&
+        registerForm.controls.lastname.invalid
+      "
+    >
+    <mat-error *ngIf="registerForm.controls.lastname.errors?.required">
+      <strong>Lastname is required.</strong>
+    </mat-error>
+    </div>
+    <label for="inputEmail" class="sr-only">Email address</label>
+    <input
+      formControlName="email"
+      type="email"
+      id="inputEmail"
+      class="form-control my-3"
+      placeholder="Email address"
+      (blur)="logValidationErrors()"
+    />
+    <div
+      class="text-danger"
+      *ngIf="
+        registerForm.controls.email.touched &&
+        registerForm.controls.email.invalid
+      "
+    >
+      <mat-error *ngIf="formErrors?.email">
+        <strong>{{ formErrors.email }}</strong>
+      </mat-error>
+    </div>
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input
+      formControlName="password"
+      type="password"
+      id="inputPassword"
+      class="form-control my-3"
+      placeholder="Password"
+    />
+    <div
+      class="text-danger"
+      *ngIf="
+        registerForm.controls.password.touched &&
+        registerForm.controls.password.invalid
+      "
+    >
+      <mat-error *ngIf="registerForm.controls.password.errors?.required">
+        <strong>Password is required.</strong>
+      </mat-error>
+      <mat-error *ngIf="registerForm.controls.password.errors?.pattern">
+        <strong
+          >At least 8 characters in length Lowercase letters Uppercase letters
+          Numbers Special characters</strong
+        >
+      </mat-error>
+    </div>
+    <button
+      class="btn btn-lg btn-primary btn-block my-2"
+      type="submit"
+      [disabled]="!registerForm.valid"
+    >
+      Register
+    </button>
+  </form>
+</div>
